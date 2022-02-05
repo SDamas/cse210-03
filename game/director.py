@@ -11,5 +11,25 @@ class Director:
         """
         Class' constructor
 
-        Attributes: 
+        Attributes: (Self)
         """
+
+        self._word = Word()
+        self._puzzle = Puzzle()
+        self._player = Player()
+        self._is_playing = True
+
+    def start_game(self):
+        """
+        Start and runs the loop for the game
+        """
+
+        while self._is_playing:
+
+            self.get_inputs()
+            self.do_updates()
+            self.do_inputs()
+
+    def get_inputs(self):
+
+        
