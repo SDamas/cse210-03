@@ -1,6 +1,7 @@
 from game.word import Word
 from game.puzzle import Puzzle
 from game.player import Player
+from game.skydiver import Skydiver
 
 class Director:
     """
@@ -14,9 +15,12 @@ class Director:
         Attributes: (Self)
         """
 
-        self._word = Word()
         self._puzzle = Puzzle()
+        #should word really be a class?
+        self._word = Word()
+        self._secret_word = self._word.pick(self._puzzle.generate_secret_word())
         self._player = Player()
+        self._skydiver = Skydiver()
         self._is_playing = True
 
     def start_game(self):
@@ -31,5 +35,16 @@ class Director:
             self.do_inputs()
 
     def get_inputs(self):
+
+        #Displaying the secret word
+        secret_word = self._secret_word.display_secret_word()
+        print(secret_word)
+
+        #Displaying parachute
+        self._skydiver.display_parachute()
+
+
+
+
 
         
