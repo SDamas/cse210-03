@@ -38,7 +38,7 @@ class Director:
         print("How's your luck today?")
 
         #Player chooses the theme
-        theme = input("Choose a theme: ")
+        theme = input("Choose a theme Animal / Object / Color: ")
 
         #Generating secret word
         self._puzzle.generate_secret_word(theme)
@@ -58,11 +58,10 @@ class Director:
         """
 
         #Displaying the secret word
-        secret_word = self._puzzle.display_secret_word()
-        print(secret_word)
+        self._puzzle.display_secret_word()
 
         #Displaying parachute
-        self._skydiver.display_parachute()
+        self._skydiver.display_skydiver()
 
     def do_updates(self):
         """
@@ -73,7 +72,7 @@ class Director:
         """
 
         #Getting guess from the player
-        self._player.guess()
+        self._player.guess(input("Guess a letter [a-z]: "))
 
         #Checking if player's guess is in the secret word
         guess = self._player.get_guess()
@@ -83,7 +82,7 @@ class Director:
         #to see if parachute will be cut or not.
 
         if not guess_in_secret_word:
-            self._skydiver.cut_parachute()
+            self._skydiver.cut_skydiver()
 
     def do_outputs(self):
         """
@@ -100,9 +99,10 @@ class Director:
 
             self._is_playing = False
 
-        # #Check if player lose
-        # lose = self._player.check_life()
-        # if lose:
-            # print("Looks like your luck is against you today.")
+        #Check if player lose
+        lose = self._skydiver.check_life()
+        if lose:
+            self._skydiver.display_skydiver()
+            print("Looks like your luck is against you today.")
 
-            # self._is_playing = False
+            self._is_playing = False
